@@ -23,8 +23,10 @@ const markCommit = async (date) => {
 const makeCommits = async (n) => {
     const git = simpleGit();
 
+    const totalWeeks = moment("2024-12-20").diff(moment("2010-01-01"), "weeks");
+
     for (let i = 0; i < n; i++) {
-        const randomWWeeks = random.int(0, 54 * 4);
+        const randomWWeeks = random.int(0, totalWeeks);
         const randomDays = random.int(0, 6);
         const randomDate = moment("2010-01-01")
             .add(randomWWeeks, "weeks")
@@ -42,4 +44,4 @@ const makeCommits = async (n) => {
     await git.push();
 }
 
-await makeCommits(50000);
+makeCommits(100000);
